@@ -509,7 +509,8 @@ process(uri, mode, aperture, focusPoint, outputSize, progress):
 ## 16. 与 App 的已知差异
 
 1. 解码器：Pillow/libjpeg vs Android BitmapFactory；不模拟 `inSampleSize`。算法一致，像素源不同。
-2. 硬件：App 优先 NNAPI，本移植用 ONNX Runtime CPU。
+2. 硬件：App 优先 NNAPI，本移植用 ONNX Runtime CPU；当前**没有 CUDA/GPU 加速优化**，
+   未启用 CUDA/TensorRT/DirectML/OpenVINO provider。
 3. PNG：App 用自研 `NativePng`（RGB8）；Web 端用 Pillow，像素一致、元数据可能不同。
 4. 并行：App 用自定义 `parallelFor`；Python 用 numpy/OpenCV 的线程，运算顺序可能不同，
    float32 结果允许极小误差。

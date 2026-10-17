@@ -133,6 +133,18 @@ depth 518×784 3.9 s；GAN 1024×1536 5.5 s；ARNet 2048×1365 10.4 s/次（管�
 会话加载与多尺度/散景步骤）。
 小图会被 App 规则放大到 2048 短边附近处理，因此耗时不一定更短。
 
+## 硬件加速 / GPU
+
+当前项目 **没有针对 CUDA 等 GPU 加速做任何优化**：
+
+- 推理固定使用 ONNX Runtime `CPUExecutionProvider`，未启用 `CUDAExecutionProvider`、
+  TensorRT、DirectML、OpenVINO 或集成 GPU。
+- 未安装 `onnxruntime-gpu`，代码中也没有 CUDA/cuDNN 相关配置。
+- 上表所有性能数据均为纯 CPU 结果；模型权重虽为 fp16，但当前执行路径按 CPU 处理，
+  未做 GPU 专项调优。
+- [`backend/leica_core/models.py`](backend/leica_core/models.py) 中的 provider 列表是后续
+  接入 GPU 的入口，但 GPU 路径尚未实现或验证。
+
 ## 与 App 的已知差异
 
 - 解码器：Linux 用 Pillow/libjpeg；App 用 Android `BitmapFactory`。不模拟 `inSampleSize`，
