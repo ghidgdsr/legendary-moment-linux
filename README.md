@@ -3,6 +3,13 @@
 把 Android APK `传奇一瞬.apk`（包名 `xyz.shuncongci.leica`，v1.0）的图片处理链路完整移植到 Linux，
 提供局域网 Web 服务：上传照片 → CPU 后端处理 → 前后对比 → 下载成片。
 
+## APK 来源
+
+- APK 由酷安用户 **舜从此g** 制作。
+- 帖子地址：<https://www.coolapk.com/feed/74348677?s=Mzg0YzA3NzUyNGViMjM5ZzZhZDM3MzRjega1664>
+- 本项目仅对该 APK 做逆向分析与 Linux/Web 移植，与原作者、酷安及 Leica Camera AG
+  均无隶属关系。如需复现，请从上述帖子获取 APK。
+
 算法依据是反编译源码与三个内置 ONNX 模型，不是近似实现。核心数学（Lab、自定义重采样、
 融合、Gaussian、kernel、resize/area、split 等）已通过 JVM 黄金数据对照，详见
 [`docs/parity.md`](docs/parity.md)；完整规格见 [`docs/pipeline.md`](docs/pipeline.md)。

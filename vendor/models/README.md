@@ -1,6 +1,8 @@
 # ONNX 模型
 
-这三个模型从用户提供的 APK `传奇一瞬.apk`（包名 `xyz.shuncongci.leica`，v1.0）中提取：
+这三个模型从 APK `传奇一瞬.apk`（包名 `xyz.shuncongci.leica`，v1.0）中提取。
+APK 由酷安用户 **舜从此g** 制作，帖子地址：
+<https://www.coolapk.com/feed/74348677?s=Mzg0YzA3NzUyNGViMjM5ZzZhZDM3MzRjega1664>。
 
 | 文件 | SHA-256 |
 |---|---|
