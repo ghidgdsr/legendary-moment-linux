@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+data/
+work/
+decompiled/
+tools/
+*.apk
+web/test.jpg
+tests/jvm/harness-classes/
+tests/jvm/harness-src/

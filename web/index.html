@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0d0d0f">
+  <title>传奇一瞬 · Linux 移植</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">L</div>
+      <div>
+        <h1>传奇一瞬</h1>
+        <p>LEGENDARY MOMENT · LINUX PORT</p>
+      </div>
+    </div>
+    <button id="token-chip" class="token-chip" type="button">
+      <span class="dot"></span><span id="token-status">未授权</span>
+    </button>
+  </header>
+
+  <main class="layout">
+    <section class="viewer">
+      <div id="dropzone" class="dropzone">
+        <input id="file-input" type="file" accept="image/*,.heic,.heif" hidden>
+        <div id="empty-state" class="empty-state">
+          <div class="empty-icon">＋</div>
+          <h2>拖拽照片到这里</h2>
+          <p>或点击选择本机照片 · JPEG / PNG / WebP / HEIC</p>
+          <p class="empty-note">处理在本机完成，照片不会离开你的局域网</p>
+        </div>
+
+        <div id="compare" class="compare hidden">
+          <img id="img-original" alt="原图" draggable="false">
+          <img id="img-result" class="result-layer" alt="成片" draggable="false">
+          <div id="divider" class="divider hidden"></div>
+          <div id="focus-marker" class="focus-marker hidden"><span></span></div>
+        </div>
+      </div>
+
+      <div class="viewer-footer">
+        <div class="stage-line">
+          <span id="stage-dot" class="stage-dot"></span>
+          <span id="stage-text">待机</span>
+          <button id="pick-again" class="link-button hidden" type="button">更换照片</button>
+        </div>
+        <div class="progress"><div id="progress-bar"></div></div>
+        <div class="compare-controls hidden" id="compare-controls">
+          <span>滑动对比</span>
+          <input id="compare-range" type="range" min="0" max="100" value="50">
+          <span class="split-value" id="split-value">50%</span>
+        </div>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <section class="panel-block">
+        <h2>处理模式</h2>
+        <div id="mode-buttons" class="segmented"></div>
+        <p class="hint" id="mode-hint"></p>
+      </section>
+
+      <section class="panel-block" id="aperture-block">
+        <h2>光圈</h2>
+        <div id="aperture-buttons" class="chips"></div>
+      </section>
+
+      <section class="panel-block" id="output-block">
+        <h2>虚化出图尺寸</h2>
+        <div id="output-buttons" class="segmented"></div>
+        <p class="hint">CPU 版本：原图直出仅支持长边 ≤ 2048；更大请选 2048 / 1024。</p>
+      </section>
+
+      <section class="panel-block" id="focus-block">
+        <h2>对焦点</h2>
+        <p class="hint" id="focus-hint">在原图上轻点，选择要对焦的位置</p>
+      </section>
+
+      <div class="actions">
+        <button id="generate" class="primary" type="button" disabled>生成成片</button>
+        <button id="download" class="secondary hidden" type="button">下载结果</button>
+      </div>
+
+      <section class="panel-block meta hidden" id="meta">
+        <h2>处理信息</h2>
+        <p id="reason" class="reason"></p>
+        <div id="timings" class="timings"></div>
+      </section>
+
+      <div id="error" class="error hidden"></div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <span>算法移植自 APK · 模型与算法仅限个人本地使用</span>
+    <span id="queue-info"></span>
+  </footer>
+
+  <div id="token-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="token-title">
+    <div class="modal-card">
+      <div class="modal-brand"><span class="brand-mark small">L</span></div>
+      <h2 id="token-title">输入访问令牌</h2>
+      <p>服务运行在局域网中，需要共享令牌才能处理照片。令牌见启动日志或项目下的 <code>data/token.txt</code>。</p>
+      <input id="token-input" type="password" autocomplete="current-password" placeholder="访问令牌">
+      <div id="token-error" class="token-error hidden"></div>
+      <button id="token-submit" class="primary" type="button">进入</button>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
